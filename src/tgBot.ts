@@ -18,7 +18,7 @@ function replyWelcomeAndSaveId(ctx) {
 
 function sendMessageToChat(chatId: string, msg: string) {
   logger.debug(`chatId: ${chatId}, msg: ${msg}`)
-  bot.telegram.sendMessage(chatId, msg)
+  bot.telegram.sendMessage(chatId, msg, { parse_mode: 'Markdown' })
 }
 
 function sendUpdateMsgToChats(msg: string) {

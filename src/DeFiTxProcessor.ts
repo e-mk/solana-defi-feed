@@ -42,6 +42,7 @@ class DefiTxProcessor {
         message = `${message} FAILED TX |`
       }
 
+      message = `${message} [SolScan](https://solscan.io/tx/${txSignature}) |`
       addDeFiUpdateMessageToQueue(message)
     }
   }
