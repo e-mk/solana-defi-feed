@@ -1,8 +1,8 @@
 ## Table of Contents
-- [About](#-about)
-- [Main Challenges](#-challanges)
-- [To See It In Action](#-in-action)
-- [Future Improvements ](#-improvements)
+- [About](#about)
+- [To See It In Action](#to-see-it-in-action)
+- [Main Challenges](#main-challenges)
+- [Future Improvements ](#future-improvements)
 
 ## About
 This repository is designed to demonstrate techniques for monitoring Solana transactions in several DEXs and converting them into a notification feed that provides detailed information about the events that occur.
@@ -16,7 +16,7 @@ The application logic is organized into three main parts:
 - **User Interface**: The application's notification feed is showcased through a Telegram bot.
 
 ## To See It In Action
-Check out the deployed demo of the application by visiting [DefiFeedBot](https://t.me/DefiFeedBot).
+Check out the deployed demo of the application by visiting Telegram [DefiFeedBot](https://t.me/DefiFeedBot).
 
 ## Main Challenges
 - Ensuring consistent real-time data from the Solana blockchain presented several challenges. Various approaches were considered:
