@@ -19,7 +19,7 @@ The application logic is organized into three main parts:
 ## To See It In Action
 - Check out the deployed demo of the application by visiting Telegram [DefiFeedBot](https://t.me/DefiFeedBot).
 - The Telegram bot demo loom video is [here](https://www.loom.com/share/8bc5c51eb1124742ba1605b758f98e9d?sid=10315797-b968-45ff-abb2-d95dc06e2d6d).
-- The quick walkthrough of the code is [here](https://www.loom.com/share/3178e93f54034a3c8448c9757d1bee40?sid=c50ac872-d128-4f69-9e4c-cb91c6f29abd)
+- The quick walkthrough of the code is [here](https://www.loom.com/share/3178e93f54034a3c8448c9757d1bee40?sid=c50ac872-d128-4f69-9e4c-cb91c6f29abd).
 
 ## Main Challenges
 - Ensuring consistent real-time data from the Solana blockchain presented several challenges. Various approaches were considered:
