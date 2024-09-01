@@ -3,7 +3,7 @@
 - [To See It In Action](#to-see-it-in-action)
 - [Main Challenges](#main-challenges)
 - [Future Improvements ](#future-improvements)
-- [Building Your Own Bot](#build-your-own-bot)
+- [Build Your Own Bot](#build-your-own-bot)
 
 ## About
 This repository is designed to demonstrate techniques for monitoring Solana transactions in several DEXs and converting them into a notification feed that provides detailed information about the events that occur.
@@ -17,7 +17,9 @@ The application logic is organized into three main parts:
 - **User Interface**: The application's notification feed is showcased through a Telegram bot.
 
 ## To See It In Action
-Check out the deployed demo of the application by visiting Telegram [DefiFeedBot](https://t.me/DefiFeedBot).
+- Check out the deployed demo of the application by visiting Telegram [DefiFeedBot](https://t.me/DefiFeedBot).
+- The Telegram bot demo loom video is [here](https://www.loom.com/share/8bc5c51eb1124742ba1605b758f98e9d?sid=10315797-b968-45ff-abb2-d95dc06e2d6d).
+- The quick walkthrough of the code is [here](https://www.loom.com/share/3178e93f54034a3c8448c9757d1bee40?sid=c50ac872-d128-4f69-9e4c-cb91c6f29abd)
 
 ## Main Challenges
 - Ensuring consistent real-time data from the Solana blockchain presented several challenges. Various approaches were considered:
@@ -35,7 +37,7 @@ Given the time constraints, there are a few areas that could be further enhanced
 - **Filtering Logic**: Some DEXs are more active than others, making it difficult to get a clear overview from notifications. Implementing account-based filtering could help address this.
 - **Testing**: Comprehensive testing is crucial for production-ready software. Adding tests, particularly for the critical parts of the code, would greatly improve the project's robustness.
 
-## Building Your Own Bot
+## Build Your Own Bot
 
 1. Install the dependencies:
    
