@@ -1,5 +1,5 @@
 import { Idl, BorshCoder, BorshInstructionCoder, Instruction } from "@coral-xyz/anchor"
-import { bs58, base64 } from '@coral-xyz/anchor/dist/cjs/utils/bytes';
+import bs58 from 'bs58'
 import logger from './logger.js'
 
 class IxDataParser {
@@ -15,11 +15,8 @@ class IxDataParser {
     buffer = buffer.subarray(8);
 
     const coder = new BorshCoder(this.idl);
-    const args = coder.events.decode(base64.encode(buffer));
-    // logger.debug(`Args :: ${JSON.stringify(args)}`);
-  
-    // const outputAmount = (new BN(args?.data?.inputAmount)).toString()
-  
+    const args = coder.events.decode(buffer.toString('base64'));
+    
     return args?.data;
   }
 
