@@ -1,6 +1,7 @@
 import {Connection, Keypair, LogsCallback} from '@solana/web3.js';
 import { Wallet, AnchorProvider } from "@coral-xyz/anchor"
 import logger from './logger.js'
+import express from 'express';
 
 import DefiEventProcessor from './DeFiTxProcessor.js';
 import IxProcessorFactory from './IxProcessorFactory.js';
@@ -30,25 +31,16 @@ async function main() {
   await ixProcessorFactory.initProcessors()
   defiEventProcessor = new DefiEventProcessor(connection, ixProcessorFactory)
 
-  // const express = (new App(defiEventProcessor)).express
-  // express.listen(port, (err) => {
-  //   if (err) {
-  //     return logger.error(err)
-  //   }
+  const app = express()
+  const port = process.env.PORT || 3000
   
-  //   return logger.debug(`Server is listening on ${port}`)
-  // })
-
-  // defiEventProcessor.processTx("mqpFZLqTTe3kqMjd3VpjTYiBJzLThxL55ejgKsCxnqkigbdxpRCUF6N56v62Y78PKuyLK4FJD2wwmNd57KajSEu", [JUP_SWAP_PROGRAM_PK])
-  // defiEventProcessor.processTx("2AN5pV8dTLYe4C26YaVjc91csLtKurYnAUW7qTbC6HL8MZqqhgbHCYfTmN7HXosdEY3cfPdnwfeqoLHSTwP2x7rt", [JUP_SWAP_PROGRAM_PK])
-  // defiEventProcessor.processTx("2PvQwjsoDswWU4fMdzwB436RZmQ7u8NHuhhwiDaRDxPZmLRt1YCfdUvSKp8gQGgY7YtD1GUCvjBbQdksAKAa6Nxk", [JUP_SWAP_PROGRAM_PK])
+  app.get('/', (_req, res) => {
+    res.send('Hello Helius!')
+  })
   
-  // Orca
-  // defiEventProcessor.processTx("24dhib7aAmUKvUnpYrjR6ygkxFSzNBRVusaitft6mcivP3HyficX9VVCfWpyfAsGAyKPWcduwpvY2d4enB9bK3bY", [ORCA_PROGRAM_PK])
-
-  // startProcessingLogs()
-
-  // helper();
+  app.listen(port, () => {
+    logger.debug(`App listening on port ${port}`)
+  })
 }
 
 function stopListeningJupSwap() {
