@@ -1,6 +1,7 @@
 ## Table of Contents
 - [About](#about)
 - [To See It In Action](#to-see-it-in-action)
+- [Building Your Own Bot](#build-your-own-bot)
 - [Main Challenges](#main-challenges)
 - [Future Improvements ](#future-improvements)
 
@@ -17,6 +18,40 @@ The application logic is organized into three main parts:
 
 ## To See It In Action
 Check out the deployed demo of the application by visiting Telegram [DefiFeedBot](https://t.me/DefiFeedBot).
+
+## Building Your Own Bot
+
+1. Install the dependencies:
+   
+    ```sh
+    npm install
+    ```
+2. Set up the configuration file:
+    
+    > Change `.env` file with the following variables:
+    
+    ```dosini
+    SOLFEED_TG_BOT_TOKEN=<Your new Telegram bot token>
+    SOLFEED_HELIUS_API_KEY=<Helius API key>
+    SOLFEED_HELIUS_RPC_URL=<Helius RPC to connect>
+    SOLFEED_LOG_LEVEL=<Log level>
+    LOG_COUNTER_LIMIT_BIG=<Count of allowed Txs for less active DEXs>
+    LOG_COUNTER_LIMIT_SMALL=<Count of allowed Txs for more active DEXs>
+    SOLFEED_BOT_UPDATE_MSG_BULK_SIZE=<Count of events in one Tg message>
+    ```
+3. Build
+    ```sh
+    npm run build
+    ```
+4. Run 
+ + in Development environment
+   ```sh
+   npm run dev
+   ```
+ + in Development environment
+   ```sh
+   npm run start
+   ```
 
 ## Main Challenges
 - Ensuring consistent real-time data from the Solana blockchain presented several challenges. Various approaches were considered:
