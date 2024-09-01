@@ -28,6 +28,10 @@ class JupSwapIxProcessor extends IxProcessor {
 
     let message = ""
 
+    if (!parsedInstructions) {
+      return ""
+    }
+
     parsedInstructions.forEach(function (parsedIx) {
       if (parsedIx.programId.toString() == JupSwapIxProcessor.processorType && 'data' in parsedIx) {
         const parsedIxData = JupSwapIxProcessor.parseIxData(parsedIx.data, IxDataType.INSTRUCTION)
@@ -43,6 +47,10 @@ class JupSwapIxProcessor extends IxProcessor {
   private processInnerIxs(parsedInnerInstructions: ParsedInnerInstruction[]): string {
     const JupSwapIxProcessor = this;
     let message = "DEX : Jup"
+
+    if (!parsedInnerInstructions) {
+      return ""
+    }
 
     parsedInnerInstructions.forEach(function (parsedInIx) {
       parsedInIx.instructions.forEach(function (ix) {

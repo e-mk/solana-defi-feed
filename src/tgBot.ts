@@ -1,12 +1,12 @@
 import { Telegraf } from 'telegraf'
 import logger from './logger.js'
-import { BOT_UPDATE_MSG_BULK_SIZE } from './constants.js'
+import { BOT_UPDATE_MSG_BULK_SIZE, TG_BOT_TOKEN } from './constants.js'
 import { startProcessingLogs } from './index.js'
 
 let activeChatIds: string[] = []
 let defiMessages: string[] = []
 
-const bot = new Telegraf("7486446479:AAHCKWZnbzs9lkDM620yRA3l68B1sS70IJ0")
+const bot = new Telegraf(TG_BOT_TOKEN)
 bot.start(ctx => replyWelcomeAndSaveId(ctx))
 bot.launch()
 
@@ -32,7 +32,7 @@ function sendQueuedMessages() {
   let bulkedMsg = ""
 
   defiMessages.forEach(msg => {
-    bulkedMsg = `${bulkedMsg} \n ${msg}`
+    bulkedMsg = `${bulkedMsg} \n${msg}`
   })
 
   activeChatIds.forEach(chatId => {
@@ -44,7 +44,7 @@ function sendQueuedMessages() {
 
 export function addDeFiUpdateMessageToQueue(msg: string) {
   defiMessages.push(msg)
-  if (defiMessages.length > BOT_UPDATE_MSG_BULK_SIZE) {
+  if (defiMessages.length >= BOT_UPDATE_MSG_BULK_SIZE) {
     sendQueuedMessages();
   }
 }

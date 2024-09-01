@@ -39,7 +39,7 @@ class DefiTxProcessor {
 
       if (transactionDetail?.meta?.err) {
         logger.debug(`OnChain Error in Tx with Sig: ${txSignature}`)
-        message = `${message} FILED TX |`
+        message = `${message} FAILED TX |`
       }
 
       addDeFiUpdateMessageToQueue(message)

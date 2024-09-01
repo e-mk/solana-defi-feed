@@ -5,12 +5,10 @@ import logger from './logger.js'
 import DefiEventProcessor from './DeFiTxProcessor.js';
 import IxProcessorFactory from './IxProcessorFactory.js';
 import { stopUpdates } from './tgBot.js';
-import { JUP_LIMIT_ORDER_PROGRAM_PK, JUP_SWAP_PROGRAM_PK, MARGINFY_PROGRAM_PK, marginfyProgPk, jupLimitOrderProgPk, ORCA_PROGRAM_PK, orcaProgPk } from './constants.js';
-
-const LOG_COUNTER_LIMIT = 30
+import { JUP_LIMIT_ORDER_PROGRAM_PK, JUP_SWAP_PROGRAM_PK, MARGINFY_PROGRAM_PK, marginfyProgPk, jupLimitOrderProgPk, ORCA_PROGRAM_PK, orcaProgPk, HELIUS_RPC_URL, HELIUS_API_KEY, LOG_COUNTER_LIMIT_BIG, LOG_COUNTER_LIMIT_SMALL } from './constants.js';
 
 // const connection = new Connection("https://api.mainnet-beta.solana.com");
-const connection = new Connection("https://mainnet.helius-rpc.com/?api-key=ddb7c582-8a61-4b5b-ac6e-56e91bb20b1e");
+const connection = new Connection(`${HELIUS_RPC_URL}/?api-key=${HELIUS_API_KEY}`);
 
 const keypair = Keypair.generate()
 const wallet = new Wallet(keypair)
@@ -85,24 +83,26 @@ export function startProcessingLogs() {
   }
 
   logger.debug("START Processing Jup Swap Logs");
-  const jupSwapLogsCallback: LogsCallback = createLogsCallback(defiEventProcessor, JUP_SWAP_PROGRAM_PK, 5, stopListeningJupSwap)
+  const jupSwapLogsCallback: LogsCallback = createLogsCallback(defiEventProcessor, 
+    JUP_SWAP_PROGRAM_PK, LOG_COUNTER_LIMIT_SMALL, stopListeningJupSwap)
   jupSwapProgLogListenerId = connection.onLogs(jupLimitOrderProgPk, jupSwapLogsCallback, 'finalized');
   activeLogListenerIds.add(jupSwapProgLogListenerId)
 
   logger.debug("START Processing Jup Limit Order Logs");
   const jupLimitOrderLogsCallback: LogsCallback = createLogsCallback(defiEventProcessor, 
-    JUP_LIMIT_ORDER_PROGRAM_PK, LOG_COUNTER_LIMIT, stopListeningJupLimitOrder)
+    JUP_LIMIT_ORDER_PROGRAM_PK, LOG_COUNTER_LIMIT_BIG, stopListeningJupLimitOrder)
   jupLimitOrderProgLogListenerId = connection.onLogs(jupLimitOrderProgPk, jupLimitOrderLogsCallback, 'finalized');
   activeLogListenerIds.add(jupLimitOrderProgLogListenerId)
 
   logger.debug("START Processing Marginfy Logs");
   const marginfyLogsCallback: LogsCallback = createLogsCallback(defiEventProcessor, 
-    MARGINFY_PROGRAM_PK, LOG_COUNTER_LIMIT, stopListeningMarginfy)
+    MARGINFY_PROGRAM_PK, LOG_COUNTER_LIMIT_BIG, stopListeningMarginfy)
   marginfyProgLogListenerId = connection.onLogs(marginfyProgPk, marginfyLogsCallback, 'finalized');
   activeLogListenerIds.add(marginfyProgLogListenerId)
 
   logger.debug("START Processing Orca Logs");
-  const orcaLogsCallback: LogsCallback = createLogsCallback(defiEventProcessor, ORCA_PROGRAM_PK, 5, stopListeningOrca)
+  const orcaLogsCallback: LogsCallback = createLogsCallback(defiEventProcessor, 
+    ORCA_PROGRAM_PK, LOG_COUNTER_LIMIT_SMALL, stopListeningOrca)
   orcaProgLogListenerId = connection.onLogs(orcaProgPk, orcaLogsCallback, 'finalized');
   activeLogListenerIds.add(orcaProgLogListenerId)
 }

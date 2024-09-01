@@ -17,10 +17,6 @@ class JupLimitOrderIxProcessor extends IxProcessor {
     parsedInstructions: (ParsedInstruction | PartiallyDecodedInstruction)[], 
     parsedInnerInstructions: ParsedInnerInstruction[]): string | null {
 
-      if (!parsedInnerInstructions) {
-        return null
-      }
-
       let message = "| DEX : Jup"
     
       const ixProcessedMsg = this.processIxs(parsedInstructions)

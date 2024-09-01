@@ -32,6 +32,10 @@ class MarginfyIxProcessor extends IxProcessor {
   public processIxs(parsedInstructions: (ParsedInstruction | PartiallyDecodedInstruction)[]): string {
     const marginfyIxProcessor = this;
 
+    if (!parsedInstructions) {
+      return ""
+    }
+    
     let message = ""
 
     parsedInstructions.forEach(function (parsedIx) {
